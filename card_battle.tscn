@@ -10,8 +10,20 @@ script = ExtResource("1_j4dku")
 [node name="Deck" parent="." instance=ExtResource("1_bjagi")]
 position = Vector2(1778, 900)
 
-[node name="CardPosition" type="Marker2D" parent="."]
-position = Vector2(959, 343)
+[node name="CardPosition1" type="Marker2D" parent="."]
+position = Vector2(288, 448)
+
+[node name="CardPosition2" type="Marker2D" parent="."]
+position = Vector2(648, 448)
+
+[node name="CardPosition3" type="Marker2D" parent="."]
+position = Vector2(960, 448)
+
+[node name="CardPosition4" type="Marker2D" parent="."]
+position = Vector2(1288, 448)
+
+[node name="CardPosition5" type="Marker2D" parent="."]
+position = Vector2(1616, 456)
 
 [node name="DealCardButton" type="Button" parent="."]
 offset_left = 68.0
