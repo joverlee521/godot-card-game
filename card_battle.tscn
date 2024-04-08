@@ -1,14 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbsqkr8td7fec"]
+[gd_scene load_steps=4 format=3 uid="uid://cbsqkr8td7fec"]
 
 [ext_resource type="PackedScene" uid="uid://cw3fp6m67v8f1" path="res://deck.tscn" id="1_bjagi"]
 [ext_resource type="Script" path="res://card_battle.gd" id="1_j4dku"]
+[ext_resource type="Script" path="res://DealCardButton.gd" id="3_0kd1j"]
 
 [node name="CardBattle" type="Node"]
 script = ExtResource("1_j4dku")
 
 [node name="Deck" parent="." instance=ExtResource("1_bjagi")]
+position = Vector2(1778, 900)
 
 [node name="CardPosition" type="Marker2D" parent="."]
 position = Vector2(959, 343)
 
+[node name="DealCardButton" type="Button" parent="."]
+offset_left = 68.0
+offset_top = 866.0
+offset_right = 268.0
+offset_bottom = 1016.0
+text = "Deal Cards"
+script = ExtResource("3_0kd1j")
+
 [connection signal="dealt_card" from="Deck" to="." method="_on_deck_dealt_card"]
+[connection signal="empty_deck" from="Deck" to="DealCardButton" method="disable_button"]
+[connection signal="pressed" from="DealCardButton" to="Deck" method="get_card"]

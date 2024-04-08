@@ -3,21 +3,9 @@
 [ext_resource type="Script" path="res://deck.gd" id="1_m38pi"]
 [ext_resource type="PackedScene" uid="uid://d4gn7ll2fc4qj" path="res://card.tscn" id="2_ucgwi"]
 
-[node name="Deck" type="TextureButton"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -88.0
-offset_top = -256.0
-offset_right = 88.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="Deck" type="Node2D"]
+position = Vector2(872, 832)
 script = ExtResource("1_m38pi")
 card_scene = ExtResource("2_ucgwi")
 
 [node name="DefaultCardPosition" type="Marker2D" parent="."]
-position = Vector2(88, 136)
-
-[connection signal="pressed" from="." to="." method="get_card"]

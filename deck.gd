@@ -1,6 +1,8 @@
-extends TextureButton
+extends Node2D
 
 signal dealt_card(new_card)
+signal empty_deck
+
 
 @export var card_scene: PackedScene
 
@@ -32,10 +34,13 @@ func _ready():
 func _process(delta):
 	if remaining_cards.size() == 0:
 		$DefaultCard.hide()
-		disabled = true
+		empty_deck.emit()
 
 
 func get_card():
+	if remaining_cards.size() == 0:
+		return
+
 	var card_details = remaining_cards.pop_front()
 	var new_card = card_scene.instantiate()
 	new_card.setup(card_details['suit'], card_details['name'])
