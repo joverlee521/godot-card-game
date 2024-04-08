@@ -1,5 +1,6 @@
 extends TextureButton
 
+signal dealt_card(new_card)
 
 @export var card_scene: PackedScene
 
@@ -38,7 +39,5 @@ func get_card():
 	var card_details = remaining_cards.pop_front()
 	var new_card = card_scene.instantiate()
 	new_card.setup(card_details['suit'], card_details['name'])
-
-	add_child(new_card)
-	new_card.reveal_card()
+	emit_signal("dealt_card", new_card)
 

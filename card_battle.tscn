@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbsqkr8td7fec"]
+
+[ext_resource type="PackedScene" uid="uid://cw3fp6m67v8f1" path="res://deck.tscn" id="1_bjagi"]
+[ext_resource type="Script" path="res://card_battle.gd" id="1_j4dku"]
+
+[node name="CardBattle" type="Node"]
+script = ExtResource("1_j4dku")
+
+[node name="Deck" parent="." instance=ExtResource("1_bjagi")]
+
+[node name="CardPosition" type="Marker2D" parent="."]
+position = Vector2(959, 343)
+
+[connection signal="dealt_card" from="Deck" to="." method="_on_deck_dealt_card"]
