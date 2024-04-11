@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cw3fp6m67v8f1"]
 
-[ext_resource type="Script" path="res://deck.gd" id="1_m38pi"]
-[ext_resource type="PackedScene" uid="uid://d4gn7ll2fc4qj" path="res://card.tscn" id="2_ucgwi"]
+[ext_resource type="Script" path="res://scenes/deck.gd" id="1_m38pi"]
+[ext_resource type="PackedScene" uid="uid://d4gn7ll2fc4qj" path="res://scenes/card.tscn" id="2_ucgwi"]
 
 [node name="Deck" type="Node2D"]
 position = Vector2(872, 832)

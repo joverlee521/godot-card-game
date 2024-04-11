@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctkhqijw4ux2v"]
+
+[ext_resource type="Script" path="res://_debug/deal_card_button.gd" id="1_tqoub"]
+
+[node name="DealCardButton" type="Button"]
+offset_left = 68.0
+offset_top = 866.0
+offset_right = 268.0
+offset_bottom = 1016.0
+text = "Deal Cards"
+script = ExtResource("1_tqoub")
