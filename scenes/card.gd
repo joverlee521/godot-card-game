@@ -1,4 +1,4 @@
-extends Sprite2D
+extends Area2D
 
 
 const expected_card_suits = ['clubs', 'diamonds', 'hearts', 'spades']
@@ -25,7 +25,7 @@ var card_value: int
 
 
 func _ready():
-	texture = load(back_image)
+	$Sprite2D.texture = load(back_image)
 	hide()
 
 
@@ -43,5 +43,5 @@ func reveal_card():
 	show()
 
 	var image_file = "res://art/Cards/{suit}_{name}.png".format({ 'suit': card_suit, 'name': card_name })
-	texture = load(image_file)
+	$Sprite2D.texture = load(image_file)
 
