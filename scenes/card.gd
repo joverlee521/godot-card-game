@@ -22,6 +22,8 @@ var back_image = "res://art/Cards/back03.png"
 var card_suit: String
 var card_name: String
 var card_value: int
+var card_of_deck: bool = false
+var card_selected: bool = false
 
 
 func _ready():
@@ -45,3 +47,15 @@ func reveal_card():
 	var image_file = "res://art/Cards/{suit}_{name}.png".format({ 'suit': card_suit, 'name': card_name })
 	$Sprite2D.texture = load(image_file)
 
+
+func _on_input_event(viewport, event, shape_idx):
+	if (event.is_pressed()
+		and event.button_index == MOUSE_BUTTON_LEFT
+		and !card_of_deck):
+
+		card_selected = !card_selected
+
+		if card_selected:
+			position.y = position.y - 50
+		else:
+			position.y = position.y + 50

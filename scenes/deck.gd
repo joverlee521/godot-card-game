@@ -27,7 +27,9 @@ func _ready():
 	add_child(default_card)
 
 	$DefaultCard.position = $DefaultCardPosition.position
+	$DefaultCard.card_of_deck = true
 	$DefaultCard.show()
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

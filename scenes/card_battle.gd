@@ -20,5 +20,5 @@ func deal_hand():
 
 func deal_cards(number_of_cards):
 	for n in number_of_cards:
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.2).timeout
 		$Deck.get_card()
