@@ -2,7 +2,11 @@ extends ColorRect
 
 signal hand_full
 
-var hand_size = 5
+var hand_size: int = 5:
+	set(value):
+		hand_size = value
+		set_card_x_spacing()
+
 var card_y
 var card_x_spacing
 var cards_in_hand = []
@@ -14,12 +18,16 @@ func _ready():
 	var size = rect.size
 
 	card_y = size.y/2
-	card_x_spacing = size.x/(hand_size + 1)
+	set_card_x_spacing()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func set_card_x_spacing():
+	card_x_spacing = size.x/(hand_size + 1)
 
 
 func _on_deck_dealt_card(new_card):
