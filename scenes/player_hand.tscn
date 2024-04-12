@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://c03o8kg0ojahj"]
+
+[ext_resource type="Script" path="res://scenes/player_hand.gd" id="1_shggg"]
+
+[node name="PlayerHand" type="ColorRect"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -368.0
+offset_right = 688.0
+offset_bottom = -118.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.239216, 0, 0.25098, 0)
+script = ExtResource("1_shggg")
