@@ -2,6 +2,7 @@ extends ColorRect
 
 signal hand_full
 signal cards_selected(max_cards_selected: bool)
+signal cards_played(cards)
 
 const max_selected = 5
 
@@ -32,27 +33,55 @@ func set_card_x_spacing():
 	card_x_spacing = size.x/(hand_size + 1)
 
 
+func position_card(card, card_order):
+	var card_x = card_order * card_x_spacing
+	card.position = Vector2(card_x, card_y)
+
+
 func _on_deck_dealt_card(new_card):
 	if cards_in_hand >= hand_size:
 		print("MAX HAND SIZE")
 		return
 
 	add_child(new_card)
+	new_card.add_to_group("cards_in_hand")
 
 	# 2-way signal connection to prevent selecting more cards than the max_selected
 	new_card.card_clicked.connect(_on_card_clicked)
 	self.cards_selected.connect(new_card._on_cards_selected)
 
 	cards_in_hand += 1
-	var card_x = cards_in_hand * card_x_spacing
-	new_card.position = Vector2(card_x, card_y)
+	position_card(new_card, cards_in_hand)
 	new_card.reveal_card()
 
 
-func _on_card_clicked(card_selected):
+func _on_card_clicked(card_selected, card):
 	if card_selected:
 		current_selected += 1
+		card.add_to_group("selected_cards")
 	else:
 		current_selected -= 1
+		card.remove_from_group("selected_cards")
 
+	emit_signal("cards_selected", current_selected == max_selected)
+
+
+func _on_play_cards():
+	var selected_cards = get_tree().get_nodes_in_group("selected_cards")
+
+	var num_selected_cards = len(selected_cards)
+	cards_in_hand -= num_selected_cards
+	current_selected = 0
+
+	for card in selected_cards:
+		card.remove_from_group("selected_cards")
+		card.remove_from_group("cards_in_hand")
+		remove_child(card)
+
+	var remaining_cards = get_tree().get_nodes_in_group("cards_in_hand")
+	for i in len(remaining_cards):
+		var card = remaining_cards[i]
+		position_card(card, i+1)
+
+	emit_signal("cards_played", selected_cards)
 	emit_signal("cards_selected", current_selected == max_selected)

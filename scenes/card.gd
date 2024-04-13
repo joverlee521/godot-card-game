@@ -29,6 +29,7 @@ var card_value: int
 var mouse_entered_card: bool = false
 var card_selected: bool = false
 var prevent_selection: bool = false
+var card_played: bool = false
 
 
 func _ready():
@@ -61,7 +62,7 @@ func reveal_card():
 func _unhandled_input(event):
 	if (event.is_action_pressed("mouse_left_click")
 	and mouse_entered_card):
-		if !prevent_selection or card_selected:
+		if !card_played and (!prevent_selection or card_selected):
 			card_selected = !card_selected
 
 			if card_selected:
@@ -69,7 +70,7 @@ func _unhandled_input(event):
 			else:
 				position.y = position.y + 50
 
-			emit_signal("card_clicked", card_selected)
+			emit_signal("card_clicked", card_selected, self)
 
 		self.get_viewport().set_input_as_handled()
 

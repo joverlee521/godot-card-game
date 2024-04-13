@@ -22,3 +22,15 @@ func deal_cards(number_of_cards):
 	for n in number_of_cards:
 		await get_tree().create_timer(0.2).timeout
 		$Deck.get_card()
+
+
+func _on_play_cards_pressed():
+	$PlayCards.set_disabled(true)
+
+
+func _on_cards_played(cards):
+	var num_played_cards = len(cards)
+	await $PlayedHand.add_played_cards(cards)
+
+	deal_cards(len(cards))
+	$PlayCards.set_disabled(false)

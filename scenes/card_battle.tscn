@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cw3fp6m67v8f1" path="res://scenes/deck.tscn" id="1_bjagi"]
 [ext_resource type="Script" path="res://scenes/card_battle.gd" id="1_j4dku"]
 [ext_resource type="Texture2D" uid="uid://bi5ctsrjsnye3" path="res://art/Cards/back03.png" id="3_1qce6"]
-[ext_resource type="PackedScene" uid="uid://ctkhqijw4ux2v" path="res://_debug/deal_card_button.tscn" id="3_62us8"]
 [ext_resource type="PackedScene" uid="uid://c03o8kg0ojahj" path="res://scenes/player_hand.tscn" id="4_a4ewp"]
+[ext_resource type="PackedScene" uid="uid://c1aoelms7hlo0" path="res://scenes/played_hand.tscn" id="4_cf5p4"]
 
 [node name="CardBattle" type="Node"]
 script = ExtResource("1_j4dku")
@@ -13,13 +13,41 @@ script = ExtResource("1_j4dku")
 position = Vector2(1778, 900)
 deck_image = ExtResource("3_1qce6")
 
-[node name="DealCardButton" parent="." instance=ExtResource("3_62us8")]
+[node name="PlayedHand" parent="." instance=ExtResource("4_cf5p4")]
+
+[node name="PlayedCard0" type="Marker2D" parent="PlayedHand"]
+position = Vector2(250, 380)
+
+[node name="PlayedCard1" type="Marker2D" parent="PlayedHand"]
+position = Vector2(600, 380)
+
+[node name="PlayedCard2" type="Marker2D" parent="PlayedHand"]
+position = Vector2(950, 380)
+
+[node name="PlayedCard3" type="Marker2D" parent="PlayedHand"]
+position = Vector2(1300, 380)
+
+[node name="PlayedCard4" type="Marker2D" parent="PlayedHand"]
+position = Vector2(1650, 380)
 
 [node name="PlayerHand" parent="." instance=ExtResource("4_a4ewp")]
-offset_left = -552.0
-offset_top = -297.0
-offset_right = 650.0
-offset_bottom = -47.0
+offset_left = -728.0
+offset_top = -308.0
+offset_right = 672.0
+offset_bottom = -58.0
+
+[node name="PlayCards" type="Button" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -208.0
+offset_right = 164.0
+offset_bottom = -158.0
+grow_vertical = 0
+text = "Play Cards"
 
 [connection signal="dealt_card" from="Deck" to="PlayerHand" method="_on_deck_dealt_card"]
-[connection signal="pressed" from="DealCardButton" to="Deck" method="get_card"]
+[connection signal="cards_played" from="PlayerHand" to="." method="_on_cards_played"]
+[connection signal="pressed" from="PlayCards" to="." method="_on_play_cards_pressed"]
+[connection signal="pressed" from="PlayCards" to="PlayerHand" method="_on_play_cards"]
