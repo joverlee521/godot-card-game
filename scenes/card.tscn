@@ -10,10 +10,10 @@ size = Vector2(354, 512)
 position = Vector2(430, 246)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_8ft8g")
+back_image = ExtResource("2_iplnl")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_iplnl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 2)

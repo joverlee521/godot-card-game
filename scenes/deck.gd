@@ -5,6 +5,7 @@ signal empty_deck
 
 
 @export var card_scene: PackedScene
+@export var deck_image: CompressedTexture2D
 
 
 # Default normal deck
@@ -21,21 +22,13 @@ func _ready():
 			remaining_cards.append(card)
 
 	remaining_cards.shuffle()
-
-	var default_card = card_scene.instantiate()
-	default_card.name = 'DefaultCard'
-	add_child(default_card)
-
-	$DefaultCard.position = $DefaultCardPosition.position
-	$DefaultCard.card_of_deck = true
-	$DefaultCard.show()
-
+	$Sprite2D.texture = deck_image
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if remaining_cards.size() == 0:
-		$DefaultCard.hide()
+		$Sprite2D.hide()
 		empty_deck.emit()
 
 
@@ -45,6 +38,6 @@ func get_card():
 
 	var card_details = remaining_cards.pop_front()
 	var new_card = card_scene.instantiate()
-	new_card.setup(card_details['suit'], card_details['name'])
+	new_card.setup(card_details['suit'], card_details['name'], deck_image)
 	emit_signal("dealt_card", new_card)
 
