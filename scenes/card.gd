@@ -1,5 +1,7 @@
 extends Area2D
 
+signal card_clicked(card_selected: bool)
+
 @export var back_image: CompressedTexture2D
 
 
@@ -26,6 +28,7 @@ var card_value: int
 
 var mouse_entered_card: bool = false
 var card_selected: bool = false
+var prevent_selection: bool = false
 
 
 func _ready():
@@ -58,12 +61,15 @@ func reveal_card():
 func _unhandled_input(event):
 	if (event.is_action_pressed("mouse_left_click")
 	and mouse_entered_card):
-		card_selected = !card_selected
+		if !prevent_selection or card_selected:
+			card_selected = !card_selected
 
-		if card_selected:
-			position.y = position.y - 50
-		else:
-			position.y = position.y + 50
+			if card_selected:
+				position.y = position.y - 50
+			else:
+				position.y = position.y + 50
+
+			emit_signal("card_clicked", card_selected)
 
 		self.get_viewport().set_input_as_handled()
 
@@ -72,3 +78,6 @@ func _on_Area2D_mouse_entered():
 
 func _on_Area2D_mouse_exited():
 	mouse_entered_card = false
+
+func _on_cards_selected(max_cards_selected):
+	prevent_selection = max_cards_selected
