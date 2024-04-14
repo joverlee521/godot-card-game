@@ -15,6 +15,19 @@ deck_image = ExtResource("3_1qce6")
 
 [node name="PlayedHand" parent="." instance=ExtResource("4_cf5p4")]
 
+[node name="PlayedHandName" type="Label" parent="PlayedHand"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 216.0
+offset_top = 64.0
+offset_right = 1716.0
+offset_bottom = 133.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Played hand"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PlayedCard0" type="Marker2D" parent="PlayedHand"]
 position = Vector2(250, 380)
 
