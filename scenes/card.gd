@@ -1,11 +1,11 @@
-extends Area2D
+class_name Card extends Area2D
 
 signal card_clicked(card_selected: bool)
 
 @export var back_image: CompressedTexture2D
 
 
-const expected_card_suits = ['clubs', 'diamonds', 'hearts', 'spades']
+const expected_card_suits = ['spades', 'hearts', 'clubs', 'diamonds']
 const card_values = {
 	'02' = 2,
 	'03' = 3,
