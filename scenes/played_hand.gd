@@ -29,8 +29,8 @@ func add_played_cards(cards):
 
 
 	for hand_type in hand_types:
-		var hand = hand_type.new()
-		var verified_cards = hand.verify_hand(cards)
+		var hand = hand_type.new(cards)
+		var verified_cards = hand.verify_hand()
 		if !verified_cards.is_empty():
 			$PlayedHandName.text = hand.name.to_upper()
 			# TODO: Calculate played cards values here

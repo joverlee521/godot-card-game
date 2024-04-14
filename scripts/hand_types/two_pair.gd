@@ -1,15 +1,15 @@
 class_name TwoPair extends HandType
 
 
-func _init():
-	super()
+func _init(cards):
+	super(cards)
 	name = "two pair"
 	base_score = 3
 
 
-func verify_hand(cards):
+func verify_hand():
 	var verified_cards = []
-	group_cards(cards,"card_name")
+	group_cards("card_name")
 
 	for card_name in card_groups:
 		if len(card_groups[card_name]) == 2:

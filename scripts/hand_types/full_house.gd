@@ -1,16 +1,16 @@
 class_name FullHouse extends HandType
 
 
-func _init():
-	super()
+func _init(cards):
+	super(cards)
 	name = "full house"
 	base_score = 7
 
 
-func verify_hand(cards):
+func verify_hand():
 	var pair = []
 	var three_of_a_kind = []
-	group_cards(cards,"card_name")
+	group_cards("card_name")
 
 	for card_name in card_groups:
 		if len(card_groups[card_name]) == 2:
