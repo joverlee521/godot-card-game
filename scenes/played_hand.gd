@@ -1,6 +1,10 @@
 extends Node2D
 
 var hand_types = [
+	FourOfAKind,
+	FullHouse,
+	Flush,
+	ThreeOfAKind,
 	TwoPair,
 	Pair,
 ]
