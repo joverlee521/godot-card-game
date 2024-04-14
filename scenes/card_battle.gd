@@ -29,7 +29,6 @@ func _on_play_cards_pressed():
 
 
 func _on_cards_played(cards):
-	var num_played_cards = len(cards)
 	await $PlayedHand.add_played_cards(cards)
 
 	deal_cards(len(cards))
