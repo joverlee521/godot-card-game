@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var hand_types = [
 	StraightFlush,
 	FourOfAKind,
@@ -11,6 +12,8 @@ var hand_types = [
 	Pair,
 	HighCard,
 ]
+
+var hand_score = 0
 
 
 func _ready():
@@ -31,11 +34,18 @@ func add_played_cards(cards):
 		var verified_cards = hand.verify_hand()
 		if !verified_cards.is_empty():
 			$PlayedHandName.text = hand.name.to_upper()
-			# TODO: Calculate played cards values here
 			verified_cards.map(func(card): card.position.y -= 50)
+			calculate_hand_score(verified_cards, hand.base_score)
+			$PlayedHandScore.text = str(hand_score)
 			break
 
 	await get_tree().create_timer(2.0).timeout
 
 	$PlayedHandName.text = ""
+	$PlayedHandScore.text = ""
 	get_tree().call_group("played_cards", "queue_free")
+
+
+func calculate_hand_score(cards, score_multiplier):
+	var sum = cards.reduce(func(accum, card): return accum + card.card_value, 0)
+	hand_score = sum * score_multiplier

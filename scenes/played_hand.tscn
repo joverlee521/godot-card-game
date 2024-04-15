@@ -8,13 +8,26 @@ script = ExtResource("1_a1ogw")
 [node name="PlayedHandName" type="Label" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 216.0
-offset_top = 64.0
-offset_right = 1716.0
-offset_bottom = 133.0
+offset_left = 200.0
+offset_top = 32.0
+offset_right = 1700.0
+offset_bottom = 101.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "Played hand"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayedHandScore" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 200.0
+offset_top = 96.0
+offset_right = 1700.0
+offset_bottom = 165.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Played score"
 horizontal_alignment = 1
 vertical_alignment = 1
 
