@@ -19,7 +19,7 @@ func verify_hand():
 		and cards.any(func(card): return card.card_name == "ace")):
 
 		card_name_order.erase("ace")
-		card_name_order.push_front("ace")
+		card_name_order.append("ace")
 		verified_cards = verify_straight()
 
 	return verified_cards

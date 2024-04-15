@@ -11,6 +11,5 @@ func verify_hand():
 	if super().is_empty(): return []
 
 	sort_by_attribute("card_name")
-	cards.reverse()
 	return [cards[0]]
 

@@ -7,19 +7,19 @@ signal card_clicked(card_selected: bool)
 
 const expected_card_suits = ['spades', 'hearts', 'clubs', 'diamonds']
 const card_values = {
-	'02' = 2,
-	'03' = 3,
-	'04' = 4,
-	'05' = 5,
-	'06' = 6,
-	'07' = 7,
-	'08' = 8,
-	'09' = 9,
-	'10' = 10,
-	'jack' = 10,
-	'queen' = 10,
+	'ace' = 11,
 	'king' = 10,
-	'ace' = 11
+	'queen' = 10,
+	'jack' = 10,
+	'10' = 10,
+	'09' = 9,
+	'08' = 8,
+	'07' = 7,
+	'06' = 6,
+	'05' = 5,
+	'04' = 4,
+	'03' = 3,
+	'02' = 2,
 }
 
 var card_suit: String
