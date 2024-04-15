@@ -64,12 +64,6 @@ func _unhandled_input(event):
 	and mouse_entered_card):
 		if !card_played and (!prevent_selection or card_selected):
 			card_selected = !card_selected
-
-			if card_selected:
-				position.y = position.y - 50
-			else:
-				position.y = position.y + 50
-
 			emit_signal("card_clicked")
 
 		self.get_viewport().set_input_as_handled()

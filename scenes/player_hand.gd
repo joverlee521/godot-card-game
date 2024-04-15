@@ -36,7 +36,12 @@ func set_card_x_spacing():
 
 func position_card(card, card_order):
 	var card_x = card_order * card_x_spacing
-	card.position = Vector2(card_x, card_y)
+
+	var current_card_y = card_y
+	if card.card_selected:
+		current_card_y -= 50
+
+	card.position = Vector2(card_x, current_card_y)
 	card.z_index = card_order
 
 
@@ -68,6 +73,7 @@ func _on_sort_by_suit():
 
 
 func _on_card_clicked():
+	position_all_cards()
 	emit_signal("cards_selected", len(hand.selected_cards()) == max_selected)
 
 
