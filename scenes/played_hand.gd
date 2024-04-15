@@ -12,14 +12,9 @@ var hand_types = [
 	HighCard,
 ]
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	$PlayedHandName.text = ""
 
 
 func add_played_cards(cards):
@@ -42,4 +37,5 @@ func add_played_cards(cards):
 
 	await get_tree().create_timer(2.0).timeout
 
+	$PlayedHandName.text = ""
 	get_tree().call_group("played_cards", "queue_free")
