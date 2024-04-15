@@ -1,6 +1,9 @@
 extends Node2D
 
 
+signal hand_played(hand_score: int)
+
+
 var hand_types = [
 	StraightFlush,
 	FourOfAKind,
@@ -44,8 +47,10 @@ func add_played_cards(cards):
 	$PlayedHandName.text = ""
 	$PlayedHandScore.text = ""
 	get_tree().call_group("played_cards", "queue_free")
+	emit_signal("hand_played", hand_score)
 
 
 func calculate_hand_score(cards, score_multiplier):
 	var sum = cards.reduce(func(accum, card): return accum + card.card_value, 0)
 	hand_score = sum * score_multiplier
+

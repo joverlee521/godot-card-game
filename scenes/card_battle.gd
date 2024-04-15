@@ -1,9 +1,11 @@
 extends Node
 
 var battle_hand_size = 8
+var total_score = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$TotalScore.text = str(total_score)
 	$PlayerHand.hand_size = battle_hand_size
 	await get_tree().create_timer(2.0).timeout
 	deal_hand()
@@ -29,3 +31,8 @@ func _on_cards_played(cards):
 	await $PlayedHand.add_played_cards(cards)
 
 	deal_cards(num_cards_played)
+
+
+func _on_hand_played(hand_score):
+	total_score += hand_score
+	$TotalScore.text = str(total_score)
