@@ -28,6 +28,7 @@ func _ready():
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	card_y = get_rect().size.y/2
 	set_card_x_spacing()
+	$PlayCards.set_disabled(true)
 
 
 func set_card_x_spacing():
@@ -73,11 +74,14 @@ func _on_sort_by_suit():
 
 
 func _on_card_clicked():
+	$PlayCards.set_disabled(hand.selected_cards().is_empty())
+
 	position_all_cards()
 	emit_signal("cards_selected", len(hand.selected_cards()) == max_selected)
 
 
 func _on_play_cards():
+	$PlayCards.set_disabled(true)
 	var selected_cards = hand.selected_cards()
 	for card in selected_cards:
 		hand.remove_card(card)

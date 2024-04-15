@@ -24,13 +24,8 @@ func deal_cards(number_of_cards):
 		$Deck.get_card()
 
 
-func _on_play_cards_pressed():
-	$PlayCards.set_disabled(true)
-
-
 func _on_cards_played(cards):
 	var num_cards_played = len(cards)
 	await $PlayedHand.add_played_cards(cards)
 
 	deal_cards(num_cards_played)
-	$PlayCards.set_disabled(false)
