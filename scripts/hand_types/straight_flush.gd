@@ -5,9 +5,12 @@ func _init(cards):
 	super(cards)
 	name = "straight flush"
 	base_score = 8
+	min_cards = 5
 
 
 func verify_hand():
+	if super().is_empty(): return []
+
 	var verified_straight = super()
 
 	if verified_straight.is_empty():

@@ -5,9 +5,12 @@ func _init(cards):
 	super(cards)
 	name = "straight"
 	base_score = 4
+	min_cards = 5
 
 
 func verify_hand():
+	if super().is_empty(): return []
+
 	var verified_cards = verify_straight()
 
 	# Do a second check for straights if Ace is in hand

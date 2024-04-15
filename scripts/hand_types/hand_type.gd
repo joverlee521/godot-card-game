@@ -2,6 +2,7 @@ class_name HandType extends Hand
 
 var name: String
 var base_score: int
+var min_cards: int = 1
 
 
 func _init(cards):
@@ -9,5 +10,7 @@ func _init(cards):
 
 
 func verify_hand() -> Array:
-	assert(false, "verify_hand method must be implemented by subclasses")
+	if self.size() >= min_cards:
+		return cards
+
 	return []

@@ -8,6 +8,8 @@ func _init(cards):
 
 
 func verify_hand():
+	if super().is_empty(): return []
+
 	group_cards("card_name")
 
 	for card_name in card_groups:

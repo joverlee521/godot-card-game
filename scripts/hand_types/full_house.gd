@@ -5,9 +5,12 @@ func _init(cards):
 	super(cards)
 	name = "full house"
 	base_score = 7
+	min_cards = 5
 
 
 func verify_hand():
+	if super().is_empty(): return []
+
 	var pair = []
 	var three_of_a_kind = []
 	group_cards("card_name")
