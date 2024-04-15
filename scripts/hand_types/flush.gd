@@ -8,10 +8,9 @@ func _init(cards):
 
 
 func verify_hand():
-	group_cards("card_suit")
+	var first_suit = cards[0].card_suit
 
-	for card_name in card_groups:
-		if len(card_groups[card_name]) == 5:
-			return card_groups[card_name]
+	if cards.any(func(card): return card.card_suit != first_suit):
+		return []
 
-	return []
+	return cards
