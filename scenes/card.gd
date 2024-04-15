@@ -70,7 +70,7 @@ func _unhandled_input(event):
 			else:
 				position.y = position.y + 50
 
-			emit_signal("card_clicked", card_selected, self)
+			emit_signal("card_clicked")
 
 		self.get_viewport().set_input_as_handled()
 

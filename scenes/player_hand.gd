@@ -12,9 +12,15 @@ var hand_size: int:
 		hand.max_hand_size = value
 		set_card_x_spacing()
 
+
 var card_y
 var card_x_spacing
-var current_selected = 0
+
+var sort_attribute = "card_name":
+	set(value):
+		sort_attribute = value
+		position_all_cards()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,11 +30,6 @@ func _ready():
 	set_card_x_spacing()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func set_card_x_spacing():
 	card_x_spacing = size.x/(hand.max_hand_size + 1)
 
@@ -36,6 +37,14 @@ func set_card_x_spacing():
 func position_card(card, card_order):
 	var card_x = card_order * card_x_spacing
 	card.position = Vector2(card_x, card_y)
+	card.z_index = card_order
+
+
+func position_all_cards():
+	hand.sort_cards(sort_attribute)
+	for i in hand.size():
+		var card = hand.cards[i]
+		position_card(card, i+1)
 
 
 func _on_deck_dealt_card(new_card):
@@ -46,35 +55,29 @@ func _on_deck_dealt_card(new_card):
 	new_card.card_clicked.connect(_on_card_clicked)
 	self.cards_selected.connect(new_card._on_cards_selected)
 
-	position_card(new_card, len(hand.cards))
+	position_all_cards()
 	new_card.reveal_card()
 
 
-func _on_card_clicked(card_selected, card):
-	if card_selected:
-		current_selected += 1
-		card.add_to_group("selected_cards")
-	else:
-		current_selected -= 1
-		card.remove_from_group("selected_cards")
+func _on_sort_by_name():
+	sort_attribute = "card_name"
 
-	emit_signal("cards_selected", current_selected == max_selected)
+
+func _on_sort_by_suit():
+	sort_attribute = "card_suit"
+
+
+func _on_card_clicked():
+	emit_signal("cards_selected", len(hand.selected_cards()) == max_selected)
 
 
 func _on_play_cards():
-	var selected_cards = get_tree().get_nodes_in_group("selected_cards")
-
-	var num_selected_cards = len(selected_cards)
-	current_selected = 0
-
+	var selected_cards = hand.selected_cards()
 	for card in selected_cards:
-		card.remove_from_group("selected_cards")
-		hand.cards.erase(card)
+		hand.remove_card(card)
 		remove_child(card)
 
-	for i in len(hand.cards):
-		var card = hand.cards[i]
-		position_card(card, i+1)
+	position_all_cards()
 
 	emit_signal("cards_played", selected_cards)
-	emit_signal("cards_selected", current_selected == max_selected)
+	emit_signal("cards_selected", len(hand.selected_cards()) == max_selected)
