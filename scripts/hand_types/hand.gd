@@ -1,6 +1,9 @@
 class_name Hand
 
 
+var card_name_order = Card.card_values.keys()
+var card_suit_order = Card.expected_card_suits
+
 var max_hand_size: int
 var cards: Array
 var card_groups: Dictionary
@@ -57,9 +60,9 @@ func sort_cards(attribute: String) -> void:
 func sort_by_attribute(attribute) -> void:
 	var sort_order = []
 	if attribute == "card_name":
-		sort_order = Card.card_values.keys()
+		sort_order = card_name_order
 	elif attribute == "card_suit":
-		sort_order = Card.expected_card_suits
+		sort_order = card_suit_order
 	else:
 		assert(false, "Unexpected attribute for sorting: %s" % attribute)
 

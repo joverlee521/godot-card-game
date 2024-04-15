@@ -4,6 +4,7 @@ var hand_types = [
 	FourOfAKind,
 	FullHouse,
 	Flush,
+	Straight,
 	ThreeOfAKind,
 	TwoPair,
 	Pair,
